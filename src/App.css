@@ -1,38 +1,85 @@
-.App {
+.backgroundClear {
+  background-image: url(img/clear.png);
+  background-size: cover;
+  height: 100vh;
+}
+
+.basic {
+  padding: 1em;
+}
+
+.nothing {
+  height: 10%;
+}
+
+/* 1. 메인 */
+.mainSection {
+  display: flex;
+  justify-content: space-between;
+  height: 43%;
+}
+
+.leftWeatherBox {
   text-align: center;
+  padding: 1em;
+  color: white;
+  border: 1px solid white;
+  width: 33%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.city {
+  font-size: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.date {
+  font-size: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.time {
+  font-size: 70px;
+}
+
+.info {
+  font-size: 30px;
+}
+
+.buttonBox{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.rightWeatherBox {
+  text-align: center;
+  padding: 1em;
   color: white;
+  border: 1px solid white;
+  width: 33%;
 }
 
-.App-link {
-  color: #61dafb;
+/* 2. 메뉴 */
+.menuSection {
+  height: 17%;
+  border: 1px solid white;
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menuInfoBox{
+  color: white;
+  border: 1px solid white;
+  margin: 1em;
+  width: calc(100% / 7 - 2em);
 }
+
+/* 3. 요일별 */
+.daySection {
+  height: 30%;
+  border: 1px solid white;
+  display: flex;
+}
+
+.dayWeatherBox{
+  border: 1px solid white;
+  margin: 1em;
+  width: calc(100% / 7 - 2em);
+}
+

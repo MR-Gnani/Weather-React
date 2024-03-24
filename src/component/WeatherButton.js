@@ -1,12 +1,24 @@
 import React from 'react'
-import { Button } from 'react-bootstrap';
 
-const WeatherButton = () => {
+const WeatherButton = ({cities, setCity}) => {
+
+  const handleCityChange = (e)=>{
+    const selectedCity = e.target.value;
+    if (selectedCity === "Current"){
+      setCity(null);
+    } else {
+      setCity(selectedCity);
+    }
+  }
+
   return (
     <div className='buttonBox'>
-      <Button variant="info">Current Location</Button>
-      <Button variant="info">PARIS</Button>
-      <Button variant="info">NEW YORK</Button>
+      <select aria-label="Select City" className="custom-select" onChange={handleCityChange}>
+        <option value="Current">Current Location</option>
+        {cities.map((item, index) => (
+          <option key={index}>{item}</option>
+        ))}
+      </select>
     </div>
   )
 }

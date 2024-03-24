@@ -7,10 +7,9 @@ const RightBox = ({weather}) => {
 
   return (
     <div className='rightWeatherBox'>
-          <div className='sun'>PM: 89-보통</div>
           <div className='sun'>SUNRISE: {moment(sunrise).format("H:mm")}</div>
           <div className='sun'>SUNSET: {moment(sunset).format("H:mm")}</div>
-          <div className='tempC'>+{weather?.main.temp}°C</div>
+          <div className='tempC'>{weather?.main.temp}°C</div>
           {/* <div className='tempF'>+{weather?.main.temp*9/5+32}°F</div> */} 
     </div>
   )

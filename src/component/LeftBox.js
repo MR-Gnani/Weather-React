@@ -4,7 +4,6 @@ import React from 'react'
 const LeftBox = ({weather}) => {
   
   const date = new Date(weather?.dt*1000)
-  console.log(weather)
   return (
     <div className='leftWeatherBox'>
           <div className='city'>{weather?.name}</div>

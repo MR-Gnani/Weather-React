@@ -11,8 +11,6 @@ const DayBox = ({dayWeather}) => {
     // 각 날짜별로 최고기온과 최저기온을 저장할 객체를 초기화.
     const temperaturesByDay = {};
 
-    console.log("day", dayWeather)
-
     // 각 날짜별로 최고기온과 최저기온을 저장.
     dayWeather.list.forEach(data => {
         const date = new Date(data.dt * 1000);

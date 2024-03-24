@@ -4,6 +4,7 @@ import LeftBox from './component/LeftBox';
 import RightBox from './component/RightBox';
 import WeatherButton from './component/WeatherButton';
 import MenuInfo from './component/MenuInfo';
+import DayBox from './component/DayBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // 1. 앱이 실행되면 현재 위치 기반의 날씨를 보여준다.
@@ -31,6 +32,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   const [weather, setWeather]=useState(null);
+  const [dayWeather, setDayWeather]=useState(null);
 
   const apiKey = "a9496fdbcc2cce81628cd99797380bdb";
   
@@ -39,7 +41,15 @@ function App() {
       let lat = position.coords.latitude 
       let lon = position.coords.longitude
       getWeatherByCurrentLocation(lat, lon);
+      getDayWeather(lat, lon);
     });
+  }
+
+  const getDayWeather = async(lat, lon)=>{
+    let url = new URL(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+    let response = await fetch(url);
+    let data = await response.json();
+    setDayWeather(data);
   }
 
   const getWeatherByCurrentLocation = async(lat, lon)=>{
@@ -74,15 +84,7 @@ function App() {
       <MenuInfo weather={weather}/>
         
       {/* 요일별 날씨 섹션 */}
-      <div className='daySection'>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-        <div className='dayWeatherBox'></div>
-      </div>
+      <DayBox dayWeather={dayWeather}/>
 
       
     </div>

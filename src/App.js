@@ -5,7 +5,9 @@ import RightBox from './component/RightBox';
 import WeatherButton from './component/WeatherButton';
 import MenuInfo from './component/MenuInfo';
 import DayBox from './component/DayBox';
+import AlertBox from './component/AlertBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 // 1. 앱이 실행되면 현재 위치 기반의 날씨를 보여준다.
@@ -17,18 +19,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // + 우측 박스에는 날씨에 맞는 브리핑을 해준다.
 // 텍스트를 음성으로 읽어준다.
-// 하단 메뉴바 : 비오는날 우산 알림, 큰 일교차 외투 알림, 강한 햇볕 선크림 알림, 폭염or한파 외출 자제 알림,
-//            미세먼지 및 황사 마스크 알림, 건조한날 안구건조증 약.
+// 하단 메뉴바 : 비오는날 우산 알림, 큰 일교차 외투 알림, 
+//            , 건조한날 안구건조증 약.
 
 function App() {
 
   const [weather, setWeather]=useState(null);
   const [dayWeather, setDayWeather]=useState(null);
-  const cities = ["paris", "new york", "tokyo", "seoul", "vienna", "barcelona",
+  const cities = ["Current Location", "paris", "new york", "tokyo", "seoul", "vienna", "barcelona",
   "london", "vancouver", "berlin", "sydney", "melbourne", "shanghai", "san francisco",
-  "hanoi"
-];
+  "hanoi", "helsinki", "sapporo", "moscow", "bern", "rio de janeiro", "toronto"
+  ];
   const [city, setCity]=useState("");
+  const [loading, setLoading]=useState(false);
+
 
   const apiKey = "a9496fdbcc2cce81628cd99797380bdb";
 
@@ -46,32 +50,40 @@ function App() {
       return "backgroundMist";
     } else if (weatherCondition.includes("clouds")) {
       return "backgroundThunder";
+    } else if (weatherCondition.includes("snow")) {
+      return "backgroundSnow";
     }
   }
   return null;
 };
   
   const getCurrentLocation = ()=>{
+    setLoading(true);
     navigator.geolocation.getCurrentPosition((position)=>{
       let lat = position.coords.latitude 
       let lon = position.coords.longitude
       getWeatherByCurrentLocation(lat, lon);
       getDayWeather(lat, lon);
+      setLoading(false);
     });
   }
 
   const getDayWeather = async(lat, lon)=>{
     let url = new URL(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+    setLoading(true);
     let response = await fetch(url);
     let data = await response.json();
     setDayWeather(data);
+    setLoading(false);
   }
 
   const getWeatherByCurrentLocation = async(lat, lon)=>{
     let url = new URL(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+    setLoading(true);
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
+    setLoading(false);
   }
 
   const getWeatherByCity = async()=>{
@@ -79,14 +91,15 @@ function App() {
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
-    console.log("ddddd", data);
   }
 
   const getDayWeatherByCity = async()=>{
     let url = new URL(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`);
+    setLoading(true);
     let response = await fetch(url);
     let data = await response.json();
     setDayWeather(data);
+    setLoading(false);
   }
 
   useEffect(()=>{
@@ -100,14 +113,31 @@ function App() {
 
   return (
     <div className={`backgroundClear ${setBackgroundStyle()} basic`}>
+      
+      {loading? (
+      <div className='center'>
+        <ClipLoader
+        color= "#FFFFFF"
+        loading={loading}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        />
+      </div>
+        
+      ) : (
+    <div>
       <div className='nothing'></div>
 
       {/* 메인 인포 섹션 */}
       <div className='mainSection'>
         {/* 좌측 박스 */}
         <LeftBox weather={weather}/>
-
-        <WeatherButton cities={cities} setCity={setCity}/>
+        <div>
+        <WeatherButton cities={cities} setCity={setCity} city={city}/>
+        <AlertBox weather={weather} dayWeather={dayWeather}/>
+        </div>
+        
 
         {/* 우측 박스 */}
         <RightBox weather={weather}/>
@@ -118,7 +148,9 @@ function App() {
         
       {/* 요일별 날씨 섹션 */}
       <DayBox dayWeather={dayWeather}/>
-
+          </div>
+            
+      )}
     </div>
   );
 }

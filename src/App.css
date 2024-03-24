@@ -1,30 +1,57 @@
+@font-face {
+  font-family: 'TAEBAEKmilkyway';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .backgroundClear {
+  font-family: 'TAEBAEKmilkyway';
   background-image: url(img/clear.png);
   background-size: cover;
   height: 100vh;
 }
 
 .backgroundRain {
+  font-family: 'TAEBAEKmilkyway';
   background-image: url(img/rain.jpg);
   background-size: cover;
   height: 100vh;
 }
 
 .backgroundThunder {
+  font-family: 'TAEBAEKmilkyway';
   background-image: url(img/thunder.jpg);
   background-size: cover;
   height: 100vh;
 }
 
 .backgroundCloudy {
+  font-family: 'TAEBAEKmilkyway';
   background-image: url(img/cloudy.jpg);
   background-size: cover;
   height: 100vh;
 }
 
 .backgroundMist {
+  font-family: 'TAEBAEKmilkyway';
   background-image: url(img/mist.jpg);
   background-size: cover;
+  height: 100vh;
+}
+
+.backgroudnSnow {
+  font-family: 'TAEBAEKmilkyway';
+  background-image: url(img/snow.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   height: 100vh;
 }
 
@@ -72,6 +99,8 @@
   display: flex;
   flex-direction: column;
 }
+
+
 
 .rightWeatherBox {
   text-align: left;
@@ -201,6 +230,18 @@
   background: none;
   border: none;
   border-bottom: solid 1px white;
-  font-size: 20px;
+  font-size: 40px;
 }
 
+.alertBox {
+  margin-top: 1em;
+  width: 100%;
+  height: 70%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.436);
+  font-size: 18px;
+}
+
+.alertBox p {
+  margin-left: 1em;
+}

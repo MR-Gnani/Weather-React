@@ -2,9 +2,6 @@ import moment from 'moment-timezone'
 import React from 'react'
 
 const DayBox = ({dayWeather}) => {
-
-    // rain, clear, clouds, thunderstorm, snow, mist
-
     // dayWeather가 존재하고 list가 존재하는지 확인.
     if (!dayWeather || !dayWeather.list) return null;
 

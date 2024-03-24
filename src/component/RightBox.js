@@ -2,8 +2,8 @@ import moment from 'moment-timezone';
 import React from 'react'
 
 const RightBox = ({weather}) => {
-  const sunrise = new Date(weather?.sys.sunrise*1000)
-  const sunset = new Date(weather?.sys.sunset*1000)
+  const sunrise = new Date((weather?.sys.sunrise - (32400-weather?.timezone))*1000)
+  const sunset = new Date((weather?.sys.sunset - (32400-weather?.timezone))*1000)
 
   return (
     <div className='rightWeatherBox'>

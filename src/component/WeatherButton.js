@@ -6,12 +6,9 @@ const WeatherButton = ({cities, setCity, city}) => {
     const selectedCity = e.target.value;
     if (selectedCity === "Current Location"){
       setCity(null);
-      // 여기랑
     } else {
       setCity(selectedCity);
     }
-    // 여기에
-
   }
 
   return (

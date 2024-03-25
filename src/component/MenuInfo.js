@@ -40,7 +40,7 @@ const MenuInfo = ({weather}) => {
     const dewPoint = Math.round( (b*gamma) / (a-gamma)); 
 
     // 바람 방향
-    const rotation = `rotate(${weather?.wind?.deg}deg)`;
+    const rotation = `rotate(${weather?.wind?.deg+180}deg)`;
     const getWindDirection = (degree) => {
         const directions = ["북풍", "북동풍", "동풍", "남동풍", "남풍", "남서풍", "서풍", "북서풍"];
         const index = Math.round(degree / 45) % 8;

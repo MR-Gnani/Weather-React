@@ -1,4 +1,4 @@
-![mainImage]()
+![mainImage](https://github.com/MR-Gnani/Weather-React/blob/master/weatherapp.png)
 
 # Demo
 [https://naniweather.netlify.app/](https://naniweather.netlify.app/)

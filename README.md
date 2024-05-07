@@ -4,7 +4,7 @@
 [https://naniweather.netlify.app/](https://naniweather.netlify.app/)
 
 # 개발 목표 & 개발기간
-- 2024/03/27 - 2024/04/03
+- 2024/03/23 - 2024/03/25
 
 - API를 이용한 날씨 정보 제공 사이트 만들기
 - 로딩스피너를 사용하여 유저경험 상승시키기
